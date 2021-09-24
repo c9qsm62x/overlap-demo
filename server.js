@@ -180,8 +180,9 @@ app.delete("/item/:itemId", async (req, res) => {
   res.status(200).json({ deleted: itemId });
 });
 
-app.listen(3001, () => {
-  console.log("running on 3001");
+const PORT = process.env.PORT || 4000
+app.listen(PORT, () => {
+  console.log(`running on ${PORT}`);
 });
 
 async function overlappingSort({ start, end, jobId }) {
