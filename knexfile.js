@@ -5,7 +5,7 @@ const pgconfig = parse(process.env.DATABASE_URL);
 if(process.env.NODE_ENV === 'production') {
   pgconfig.ssl = { rejectUnauthorized: false };
 }
-const pgconfig = process.env.DATABASE_URL ? parse(process.env.DATABASE_URL) : {}
+
 module.exports = {
   development: {
     client: 'postgresql',
@@ -25,7 +25,7 @@ module.exports = {
 
   production: {
     client: 'postgresql',
-    connection: pgconfig,
+    connection: process.env.DATABASE_URL ? parse(process.env.DATABASE_URL) : {},
     pool: {
       min: 2,
       max: 10
