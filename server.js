@@ -7,7 +7,11 @@ const cors = require("cors");
 const elements = require("./data/event");
 const sortSweep = require("./sorter");
 
-const knex = Knex(knexConfig.development);
+let pgconfig = knexConfig.development
+if(process.env.NODE_ENV === 'production') {
+  pgconfig = knexConfig.production
+}
+const knex = Knex(pgconfig);
 const app = express();
 
 app.use(express.json());
